@@ -17,17 +17,9 @@ spec:
       - image: django_app:latest
         imagePullPolicy: Never
         name: django
-        ports:
-        - containerPort: 80
-        env:
-        - name: DEBUG
-          value: "false"
-        - name: SECRET_KEY
-          value: "some_key"
-        - name: ALLOWED_HOSTS
-          value: "127.0.0.1,localhost"
-        - name: DATABASE_URL
-          value: "postgres://test_k8s:OwOtBep9Frut@postgres:5432/test_k8s"
+        envFrom:
+          - configMapRef:
+              name: django-configmap
 ---
 apiVersion: v1
 kind: Service

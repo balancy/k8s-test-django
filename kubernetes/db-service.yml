@@ -17,15 +17,9 @@ spec:
       containers:
       - image: postgres:14.0-alpine
         name: db
-        ports:
-        - containerPort: 5432
-        env:
-        - name: POSTGRES_DB
-          value: "test_k8s"
-        - name: POSTGRES_USER
-          value: "test_k8s"
-        - name: POSTGRES_PASSWORD
-          value: "OwOtBep9Frut"
+        envFrom:
+          - configMapRef:
+              name: django-configmap
 ---
 kind: Service
 apiVersion: v1
