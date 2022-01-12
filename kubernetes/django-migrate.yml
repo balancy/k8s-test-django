@@ -4,8 +4,11 @@ kind: Job
 metadata:
   name: django-migrate
 spec:
+  backoffLimit: 2
+  activeDeadlineSeconds: 60
   template:
     spec:
+      restartPolicy: Never
       containers:
       - name: django-migrate-job
         image: django-app:latest
@@ -14,6 +17,3 @@ spec:
         envFrom:
           - configMapRef:
               name: django-configmap
-      restartPolicy: Never
-  backoffLimit: 2
-  activeDeadlineSeconds: 60

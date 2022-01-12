@@ -103,3 +103,9 @@ echo "$(minikube ip) star-burger.test" | sudo tee -a /etc/hosts
 ```
 kubectl apply -f kubernetes/django-migrate.yml
 ```
+
+13. Create cronjob which clears django sessions every month
+
+```
+kubectl apply -f kubernetes/django-clearsessions.yml
+```
