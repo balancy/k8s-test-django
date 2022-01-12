@@ -4,7 +4,7 @@ Dockerized Django site for experiments with Kubernetes.
 
 Django app using Nginx Unit image is launched inside container. Nging Unit server fulfills two functions: it serves static and media files as web-server, and launches Python with Django as app server. [More about Nginx Unit](https://unit.nginx.org/).
 
-## Local development version
+## Local development setup
 
 Run django app and the database:
 
