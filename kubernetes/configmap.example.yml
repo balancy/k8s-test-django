@@ -6,6 +6,6 @@ metadata:
 data:
   DEBUG: "false"
   SECRET_KEY: "secret_key"
-  ALLOWED_HOSTS: "127.0.0.1,localhost"
-  DATABASE_URL: "postgres://username:password:5432/db_name"
+  ALLOWED_HOSTS: "*"
+  DATABASE_URL: "postgres://username:password@psql-db-postgresql:5432/db_name"
 ...
