@@ -54,7 +54,7 @@ minikube start --vm-driver=virtualbox
 minikube image -t django-app:latest build backend_main_django
 ```
 
-6. Rename configmap.example.yml to configmap.yml and define your environment variables
+6. Rename `configmap.example.yml` to `configmap.yml` and define environment variables
 
 ```
 mv kubernetes/configmap.example.yml kubernetes/configmap.yml
@@ -96,4 +96,10 @@ k apply -f kubernetes/ingress.yml
 
 ```
 echo "$(minikube ip) star-burger.test" | sudo tee -a /etc/hosts
+```
+
+12. Migrate the database
+
+```
+kubectl apply -f kubernetes/django-migrate.yml
 ```
