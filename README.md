@@ -54,13 +54,16 @@ helm install psql-db bitnami/postgresql
 
 7. Create database, user and password following the instructions given on previous step
 
-8. Build django app image
+8. Build versioned django app image (git hash is used for versioning) and push it to [Docker Hub](https://hub.docker.com/)
 
 ```
-minikube image -t django-app:latest build backend_main_django
+docker build -t <your_dockerhub>/django-app:$(git log -1 --pretty=%h) backend_main_django
+docker push <your_dockerhub>/django-app:$(git log -1 --pretty=%h)
 ```
 
-9. Rename `configmap.example.yml` to `configmap.yml` and define environment variables
+- where `<your_dockerhub>` is your personal Docker Hub image repository
+
+9. Copy `configmap.example.yml` to `configmap.yml` and define environment variables
 
 ```
 mv kubernetes/configmap.example.yml kubernetes/configmap.yml
@@ -87,6 +90,16 @@ kubectl apply -f kubernetes/configmap.yml
 ```
 kubectl apply -f kubernetes/django-service.yml
 ```
+
+* Optional:
+
+In case you need to deploy a version of django app image different from the latest, you can use the following command:
+
+```
+kubectl set image deploy/django django=<your_dockerhub>/django-app:<version>
+```
+
+- where `version` is the django app image version, the same as the sequence of 7 first characters of git commit
 
 12. Create ingress
 

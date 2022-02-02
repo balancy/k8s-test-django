@@ -15,8 +15,8 @@ spec:
           restartPolicy: OnFailure
           containers:
           - name: django-clearsession-job
-            image: django-app:latest
-            imagePullPolicy: Never
+            image: balancy/django-app:latest
+            imagePullPolicy: IfNotPresent
             command: ["python", "manage.py",  "clearsessions"]
             envFrom:
               - configMapRef:

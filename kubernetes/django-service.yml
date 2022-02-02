@@ -14,8 +14,8 @@ spec:
         app: django-app
     spec:
       containers:
-      - image: django-app:latest
-        imagePullPolicy: Never
+      - image: balancy/django-app:latest
+        imagePullPolicy: IfNotPresent
         name: django
         envFrom:
           - configMapRef:
