@@ -138,7 +138,7 @@ kubectl apply -f kubernetes/django-migrate.yml
 14. Create ingress
 
 ```
-k apply -f kubernetes/ingress.yml
+k apply -f kubernetes/dev/ingress.yml
 ```
 
 15. Add `star-burger.test` to local hosts
@@ -209,6 +209,13 @@ kubectl apply -f kubernetes/django-migrate.yml
 kubectl apply -f kubernetes/django-clearsessions.yml
 ```
 
+7. In case you need app to be accessible via custom domain and use ssl certificates, you'll need to follow specifig instructions of your VPS provider.
+
+As an example of such instruction, here is [Digital Ocean tutorial how to configure ingress controller using Helm](https://www.digitalocean.com/community/tutorials/how-to-set-up-an-nginx-ingress-on-digitalocean-kubernetes-using-helm).
+
+In general case, you'll need to configure ingress controller, provide issuer, and install cert manager.
+
+
 #### Maintain the app
 
 In case you need to update the app to specific version, use the following command:
@@ -227,3 +234,7 @@ k describe pods | grep Image:
 ```
 
 If status of pods is `Running` and Image is the image you wanted to update app to, it's finished.
+
+## App coordinates
+
+Web app - [k8s.balancy.xyz](https://k8s.balancy.xyz/)
